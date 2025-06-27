@@ -140,7 +140,7 @@ const ConfigScreen = ({ onGenerate, isLoading }) => {
                         </FormCategory>
                     </div>
 
-                    <button type="submit" disabled={isLoading} className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-white font-bold py-4 px-4 rounded-lg transition duration-300 text-2xl shadow-xl disabled:bg-stone-500 disabled:cursor-wait" style={{fontFamily: "'Cormorant Garamond', serif"}}>
+                    <button type="submit" disabled={isLoading} className="w-full mt-4 bg-stone-800 hover:bg-stone-700 text-white font-bold py-4 px-4 rounded-lg transition duration-300 text-2xl shadow-xl disabled:bg-stone-500 disabled:cursor-wait" style={{fontFamily: "'Cormorant Garamond', serif"}}>
                         {isLoading ? 'DAVA OLUŞTURULUYOR...' : 'DAVAYI OLUŞTUR'}
                     </button>
                 </form>
