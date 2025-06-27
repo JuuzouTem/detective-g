@@ -234,7 +234,7 @@ const GameScreen = ({ gameData, onBack }) => {
                 <header className="flex-shrink-0 mb-4 bg-stone-300 p-4 rounded-lg shadow-lg border border-stone-400" style={{backgroundImage: "url(https://www.transparenttextures.com/patterns/old-paper.png)"}}>
                     <div className="flex justify-between items-center">
                         <h1 className="text-3xl font-bold text-stone-800" style={{fontFamily: "'Cormorant Garamond', serif"}}>{gameData.title}</h1>
-                        <button onClick={onBack} className="bg-stone-700 hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-lg transition">Yeni Dava Başlat</button>
+                        <button onClick={onBack} className="bg-stone-500 hover:bg-stone-400 text-white font-bold py-2 px-4 rounded-lg transition">Yeni Dava Başlat</button>
                     </div>
                     <p className="text-stone-700 mt-2 border-t border-stone-400 pt-2">{gameData.mainStory}</p>
                 </header>
