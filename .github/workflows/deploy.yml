@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure Vite is executable
+        run: chmod +x node_modules/.bin/vite
+
       - name: Build project
         run: npm run build
         env:
@@ -33,4 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          cname: example.com # Eğer özel bir alan adınız varsa buraya yazın, yoksa bu satırı silin
+          # cname: example.com # Eğer özel bir alan adınız varsa buraya yazın, yoksa bu satırı silin
