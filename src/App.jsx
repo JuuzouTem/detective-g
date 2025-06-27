@@ -97,8 +97,8 @@ const ConfigScreen = ({ onGenerate, isLoading }) => {
     );
     
     return (
-        <div className="min-h-screen bg-stone-800 p-4 sm:p-8 flex items-center justify-center font-serif" style={{backgroundImage: "url(https://www.transparenttextures.com/patterns/dark-wood.png)"}}>
-            <div className="w-full max-w-5xl bg-stone-400 p-8 rounded-lg shadow-2xl border-4 border-stone-500 relative" style={{backgroundImage: "url(https://www.transparenttextures.com/patterns/cork-wallet.png)"}}>
+        <div className="min-h-screen bg-stone-950 p-4 sm:p-8 flex items-center justify-center font-serif" style={{backgroundImage: "url(https://www.transparenttextures.com/patterns/dark-wood.png)", backgroundBlendMode: "multiply", backgroundColor: "rgba(0, 0, 0, 0.3)"}}>
+            <div className="w-full max-w-5xl bg-neutral-200 p-8 rounded-lg shadow-2xl border-4 border-stone-500 relative">
                 <img src="https://r.resimlink.com/ukai9-Hct.png" alt="Top Secret Stamp" className="absolute top-4 right-4 w-24 h-24 opacity-80 -rotate-12 pointer-events-none" />
                 <div className="text-center mb-6">
                     <h1 className="text-6xl font-bold text-stone-900" style={{fontFamily: "'Cormorant Garamond', serif"}}>Dava Jeneratörü</h1>
@@ -108,7 +108,7 @@ const ConfigScreen = ({ onGenerate, isLoading }) => {
                 <form onSubmit={(e) => { e.preventDefault(); onGenerate(settings); }}>
                     <div className="grid md:grid-cols-2 gap-8 mb-6">
                         <FormCategory title="Hikaye Temelleri">
-                             <button type="button" onClick={handleRandomizeAll} disabled={isLoading || isRolling} className="flex items-center justify-center gap-2 w-full mb-4 px-4 py-2 bg-amber-800 border border-amber-900 rounded-lg text-amber-100 hover:bg-amber-700 transition-all duration-300 disabled:opacity-50 shadow-md">
+                             <button type="button" onClick={handleRandomizeAll} disabled={isLoading || isRolling} className="flex items-center justify-center gap-2 w-full mb-4 px-4 py-2 bg-stone-700 border border-stone-800 rounded-lg text-white hover:bg-stone-600 transition-all duration-300 disabled:opacity-50 shadow-md">
                                 <BrainCircuit className={`w-5 h-5 ${isRolling ? 'animate-spin' : ''}`} />
                                 <span className="font-semibold">Yeni Fikirler Getir</span>
                             </button>
@@ -140,7 +140,7 @@ const ConfigScreen = ({ onGenerate, isLoading }) => {
                         </FormCategory>
                     </div>
 
-                    <button type="submit" disabled={isLoading} className="w-full mt-4 bg-stone-800 hover:bg-stone-700 text-white font-bold py-4 px-4 rounded-lg transition duration-300 text-2xl shadow-xl disabled:bg-stone-500 disabled:cursor-wait" style={{fontFamily: "'Cormorant Garamond', serif"}}>
+                    <button type="submit" disabled={isLoading} className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-white font-bold py-4 px-4 rounded-lg transition duration-300 text-2xl shadow-xl disabled:bg-stone-500 disabled:cursor-wait" style={{fontFamily: "'Cormorant Garamond', serif"}}>
                         {isLoading ? 'DAVA OLUŞTURULUYOR...' : 'DAVAYI OLUŞTUR'}
                     </button>
                 </form>
@@ -334,7 +334,7 @@ export default function App() {
         `;
         const schema = { type: "OBJECT", properties: { "title": { "type": "STRING" }, "mainStory": { "type": "STRING" }, "culprit": { "type": "STRING" }, "solutionDetails": { "type": "STRING" }, "documents": { "type": "ARRAY", "items": { "type": "OBJECT", "properties": { "docId": { "type": "NUMBER" }, "docType": { "type": "STRING", "enum": ["Sorgu Raporu", "Gazete Küpürü", "Otopsi Raporu", "Olay Yeri Raporu", "Kişisel Not", "Harita", "Çözüm"] }, "title": { "type": "STRING" }, "locked": { "type": "BOOLEAN" }, "password": { "type": "STRING" }, "content": { "type": "STRING" }, "detectiveHint": {"type": "STRING"} }, "required": ["docId", "docType", "title", "locked", "content"] } } }, "required": ["title", "mainStory", "culprit", "solutionDetails", "documents"] };
         try {
-            const apiKey = ""; 
+            const apiKey = import.meta.env.VITE_GEMINI_API_KEY; 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
             const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", responseSchema: schema } };
             const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
